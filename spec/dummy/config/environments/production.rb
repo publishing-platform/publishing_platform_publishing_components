@@ -61,4 +61,11 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # Compress JavaScripts and CSS.
+  config.assets.js_compressor = :terser
+  config.assets.css_compressor = false
+
+  # Do not fallback to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = false  
 end

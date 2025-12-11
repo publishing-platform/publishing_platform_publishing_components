@@ -3,24 +3,13 @@ require_relative "lib/publishing_platform_publishing_components/version"
 Gem::Specification.new do |spec|
   spec.name        = "publishing_platform_publishing_components"
   spec.version     = PublishingPlatformPublishingComponents::VERSION
-  spec.authors     = [ "neilha" ]
-  spec.email       = [ "neilharrold@gmail.com" ]
-  spec.homepage    = "TODO"
-  spec.summary     = "TODO: Summary of PublishingPlatformPublishingComponents."
-  spec.description = "TODO: Description of PublishingPlatformPublishingComponents."
+  spec.authors     = ["Publishing Platform"]
+  spec.summary     = "A gem to document components in Publishing Platform frontend applications"
+  spec.description = "A gem to document components in Publishing Platform frontend applications"
   spec.license     = "MIT"
+  spec.required_ruby_version = ">= 3.2"
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
-
-  spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
-  spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
-
-  spec.files = Dir.chdir(File.expand_path(__dir__)) do
-    Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-  end
+  spec.files = Dir["{node_modules/bootstrap,app,config,lib}/**/*", "LICENSE", "Rakefile", "README.md"].reject { |f| f["app/javascript"] }
 
   spec.add_dependency "publishing_platform_app_config"
   spec.add_dependency "rails", ">= 8.0.0"

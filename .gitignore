@@ -6,3 +6,11 @@
 /spec/dummy/log/*.log
 /spec/dummy/storage/
 /spec/dummy/tmp/
+spec/dummy/public/assets/
+.yardoc
+node_modules
+yarn-error.log
+coverage
+/app/assets/builds/*
+!/app/assets/builds/.keep
+!/app/assets/builds/gemkeep
