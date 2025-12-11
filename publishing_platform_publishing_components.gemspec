@@ -11,14 +11,16 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{node_modules/bootstrap,app,config,lib}/**/*", "LICENSE", "Rakefile", "README.md"].reject { |f| f["app/javascript"] }
 
+  spec.add_dependency "kramdown"
   spec.add_dependency "publishing_platform_app_config"
   spec.add_dependency "rails", ">= 8.0.0"
+  spec.add_dependency "rouge"
   spec.add_dependency "sprockets", ">= 3"
   spec.add_dependency "sprockets-rails"
 
   spec.add_development_dependency "dartsass-rails"
   spec.add_development_dependency "publishing_platform_rubocop"
-  spec.add_development_dependency "rspec-rails"  
+  spec.add_development_dependency "publishing_platform_test"
+  spec.add_development_dependency "rspec-rails"
   spec.add_development_dependency "terser"
-  
 end

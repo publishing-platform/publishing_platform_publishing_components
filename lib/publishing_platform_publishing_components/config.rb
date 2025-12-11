@@ -17,9 +17,9 @@ module PublishingPlatformPublishingComponents
     def self.all_stylesheets
       stylesheets = Dir.glob("#{gem_directory}/app/assets/stylesheets/publishing_platform_publishing_components/components/*.scss")
 
-      stylesheets.each_with_object({}) do |path, hsh|
-        hsh[path] = "publishing_platform_publishing_components/components/#{File.basename(path, '.*')}.css"
+      stylesheets.index_with do |path|
+        "publishing_platform_publishing_components/components/#{File.basename(path, '.*')}.css"
       end
-    end    
+    end
   end
 end

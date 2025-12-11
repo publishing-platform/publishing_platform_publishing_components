@@ -1,0 +1,137 @@
+name: Summary list
+description: Use the summary list to summarise information, for example, a user’s responses at the end of a form.
+body:  This component allows the rendering of multiple groups of lists, and actions at the group level.
+accessibility_criteria: |
+  Action links in the component must:
+
+  * indicate what the action refers to (e.g. Change _name_)
+shared_accessibility_criteria:
+  - link
+uses_component_wrapper_helper: true
+examples:
+  default:
+    data: &default-example-data
+      title: "Title, summary and body"
+      items:
+      - field: "Title"
+        value: "Ethical standards for public service providers"
+      - field: "Summary"
+        value: "Find out more about our reviews on the subject of ethical standards for public service providers, including our 2014 report, 2015 guidance and 2018 follow-up publication."
+      - field: "Body"
+        value: "After the government decided in 2013 to expand the remit of the Committee to include public service providers, the Committee on Standards in Public Life produced our first report on the issue: Ethical Standards for Providers of Public Services in 2014."
+
+  without_title:
+    data:
+      items:
+      - field: "Title"
+        value: "Ethical standards for public service providers"
+      - field: "Summary"
+        value: "Find out more about our reviews on the subject of ethical standards for public service providers, including our 2014 report, 2015 guidance and 2018 follow-up publication."
+
+  with_edit_on_section:
+    description: For all links shown in the component, see the <a href="/component-guide/summary_list/with_customised_links">with customised links example</a> for guidance.
+    data:
+      <<: *default-example-data
+      edit:
+        href: "edit-title-summary-body"
+        data_attributes:
+          gtm: "edit-title-summary-body"
+
+  with_delete_on_section:
+    description: For all links shown in the component, see the <a href="/component-guide/summary_list/with_customised_links">with customised links example</a> for guidance.
+    data:
+      <<: *default-example-data
+      delete:
+        href: "delete-title-summary-body"
+        data_attributes:
+          gtm: "delete-title-summary-body"
+
+  with_edit_and_delete_on_section:
+    description: For all links shown in the component, see the <a href="/component-guide/summary_list/with_customised_links">with customised links example</a> for guidance.
+    data:
+      <<: *default-example-data
+      edit:
+        href: "edit-title-summary-body"
+        data_attributes:
+          gtm: "edit-title-summary-body"
+      delete:
+        href: "delete-title-summary-body"
+        data_attributes:
+          gtm: "delete-title-summary-body"
+
+  with_customised_links:
+    description: |
+      For all links shown in the component, visually hidden text containing the name of the thing it refers to is automatically appended. This offers a better experience for screen reader users by making the link text unique and more explicit. In the example below, the link text would be `Change Title, summary and body`.
+
+      The text of the link can be customised using the `link_text` option. Take care that the provided `link_text` still makes sense to screen readers when combined with the title. For instance, `Reorder` link text and `Items` title becomes `Reorder Items`, which reads fine, but link text of `Summary` would read as `Summary Items`, which does not make sense.
+
+      To override this behaviour, use `link_text_no_enhance` on the link in question, as shown. This will remove the visually hidden text, allowing you to add your own. The component will render a `span` element with a class of `visually-hidden` included in a passed [capture block](https://apidock.com/rails/ActionView/Helpers/CaptureHelper/capture) as the `link_text` parameter.
+    data:
+      title: "Title, summary and body"
+      items:
+      - field: "Title"
+        value: "Rural conservation techniques"
+        edit:
+          href: "edit-title"
+          text: "Edit"
+          data_attributes:
+            gtm: "edit-title"
+      - field: "Body"
+        value: "Following the land use committee change to overreaching rural byelaws in 2009, further policies were adopted."
+        edit:
+          href: "edit-body"
+          link_text: "Edit"
+        delete:
+          href: "delete-body"
+          link_text: "Remove"
+          link_text_no_enhance: true
+      edit:
+        href: "edit-title-summary-body"
+        link_text: Edit this document <span class="visually-hidden">my hidden text for screenreaders</span>
+        link_text_no_enhance: true
+
+  with_custom_section_heading:
+    data:
+      <<: *default-example-data
+      heading_level: 2
+      heading_size: 1
+
+  with_edit_on_some_individual_items:
+    description: For all links shown in the component, see the <a href="/component-guide/summary_list/with_customised_links">with customised links example</a> for guidance.
+    data:
+      title: "Title, summary and body"
+      items:
+      - field: "Title"
+        value: "Ethical standards for public service providers"
+      - field: "Summary"
+        value: "Find out more about our reviews on the subject of ethical standards for public service providers, including our 2014 report, 2015 guidance and 2018 follow-up publication."
+        edit:
+          href: "edit-summary"
+        delete:
+          href: "delete-summary"
+      - field: "Body"
+        value: "After the government decided in 2013 to expand the remit of the Committee to include public service providers, the Committee on Standards in Public Life produced our first report on the issue: Ethical Standards for Providers of Public Services in 2014."
+        edit:
+          href: "edit-body"
+          link_text: "Edit"
+        delete:
+          href: "delete-body"
+          link_text: "Remove"
+
+  with_data_attributes:
+    description: |
+      Data attributes can be passed to individual items within the component as shown.
+    data:
+      title: "Title, summary and body"
+      items:
+        - field: "Title"
+          value: "Ethical standards for public service providers"
+          data:
+            module: "something"
+
+  with_block:
+    description: Use the summary list with a block when you need to show an empty state message or load another component.
+    data:
+      title: "Topics"
+      block: |
+        <p>No topics specified for this document.</p>

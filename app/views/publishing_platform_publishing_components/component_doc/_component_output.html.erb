@@ -1,0 +1,15 @@
+<% component = capture do %>
+  <% if example.has_block? %>
+    <%= render component_doc.partial_path, example.html_safe_data do %>
+      <%= render inline: example.block %>
+    <% end %>
+  <% else %>
+    <%= render component_doc.partial_path, example.html_safe_data %>
+  <% end %>
+<% end %>
+
+<% if example.has_embed? %>
+  <%= render inline: example.embed, locals: { component: component } %>
+<% else %>
+  <%= component %>
+<% end %>

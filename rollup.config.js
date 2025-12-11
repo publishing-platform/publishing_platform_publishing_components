@@ -5,7 +5,7 @@ export default {
   output: {
     name: 'publishing-platform-publishing-components',
     file: "app/assets/builds/application.js",
-    format: "umd",
+    format: "esm",
     inlineDynamicImports: true,
     sourcemap: true
   },
