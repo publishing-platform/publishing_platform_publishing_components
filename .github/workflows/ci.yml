@@ -39,6 +39,9 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     permissions:
       contents: write 
+    env:
+      GEM_HOST_API_KEY: ${{ secrets.PUBLISHING_PLATFORM_RUBYGEMS_API_KEY }}
+      NODE_AUTH_TOKEN: ${{ secrets.PUBLISHING_PLATFORM_NODE_AUTH_TOKEN }}
 
     steps:
     - uses: actions/checkout@v4
@@ -52,9 +55,6 @@ jobs:
         node-version-file: '.nvmrc'
 
     - run: yarn install
-    - env:
-        GEM_HOST_API_KEY: ${{ secrets.PUBLISHING_PLATFORM_RUBYGEMS_API_KEY }}
-        NODE_AUTH_TOKEN: ${{ secrets.PUBLISHING_PLATFORM_NODE_AUTH_TOKEN }}
 
     - name: Establish versions
       id: version
