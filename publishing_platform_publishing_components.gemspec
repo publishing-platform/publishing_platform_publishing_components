@@ -1,4 +1,6 @@
-require_relative "lib/publishing_platform_publishing_components/version"
+$LOAD_PATH.push File.expand_path("lib", __dir__)
+
+require "publishing_platform_publishing_components/version"
 
 Gem::Specification.new do |spec|
   spec.name        = "publishing_platform_publishing_components"

@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+
+jobs:
+  test_matrix:
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: [3.2, 3.3]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+
+    - uses: actions/setup-node@v6.1.0
+      with:
+        cache: yarn
+        node-version-file: '.nvmrc'
+
+    - run: yarn install --frozen-lockfile        
+    - run: yarn build    
+        
+    - run: bundle exec rake
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    permissions:
+      contents: write 
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: ruby/setup-ruby@v1
+      with:
+        rubygems: latest
+
+    - uses: actions/setup-node@v6.1.0
+      with:        
+        node-version-file: '.nvmrc'
+
+    - run: yarn install  
+
+    - env:
+        GEM_HOST_API_KEY: ${{ secrets.PUBLISHING_PLATFORM_RUBYGEMS_API_KEY }}     
+        NODE_AUTH_TOKEN: ${{ secrets.PUBLISHING_PLATFORM_NODE_AUTH_TOKEN }}  
+
+    - name: Establish versions
+      id: version
+      run: |
+        LOCAL_JS_VERSION=$(node -p "require('./package/package.json').version")
+        LOCAL_GEM_VERSION=$(ruby -e "puts eval(File.read('publishing_platform_publishing_components.gemspec')).version")
+        REMOTE_JS_VERSION=$(npm view @publishing-platform/publishing-platform-publishing-components version || echo "not published")
+        REMOTE_GEM_VERSION=$(gem list --exact --remote publishing_platform_publishing_components)
+
+        if [ "${LOCAL_JS_VERSION}" != "${LOCAL_GEM_VERSION}" ]; then
+          echo "::error::Javascript and GEM versions must match"
+          exit 1
+        fi                   
+
+        echo "local_js=${LOCAL_JS_VERSION}" >>$GITHUB_OUTPUT
+        echo "local_gem=${LOCAL_GEM_VERSION}" >>$GITHUB_OUTPUT   
+        echo "remote_js=${REMOTE_JS_VERSION}" >>$GITHUB_OUTPUT   
+        echo "remote_gem=${REMOTE_GEM_VERSION}" >>$GITHUB_OUTPUT     
+
+    - name: Publish gem
+      if: ${{ !contains(steps.version.outputs.remote_gem, steps.version.outputs.local_gem) }}
+      run: |
+        gem build publishing_platform_publishing_components.gemspec
+        gem push publishing_platform_publishing_components-${{steps.version.outputs.local_gem}}.gem   
+
+    - name: Publish js
+      if: ${{ steps.version.outputs.local_js != steps.version.outputs.remote_js }}
+      working-directory: ./package
+      run: npm publish
+
+    - name: Tag version
+      run: |
+        if ! git ls-remote --tags --exit-code origin v${{steps.version.outputs.local_gem}}; then
+          git tag v${{steps.version.outputs.local_gem}}
+          git push --tags
+        fi        
