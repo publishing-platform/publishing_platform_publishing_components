@@ -78,10 +78,12 @@ jobs:
           exit 1
         fi                   
 
-        echo "local_js=${LOCAL_JS_VERSION}" >>$GITHUB_OUTPUT
-        echo "local_gem=${LOCAL_GEM_VERSION}" >>$GITHUB_OUTPUT   
-        echo "remote_js=${REMOTE_JS_VERSION}" >>$GITHUB_OUTPUT   
-        echo "remote_gem=${REMOTE_GEM_VERSION}" >>$GITHUB_OUTPUT     
+        {
+          echo "local_js=${LOCAL_JS_VERSION}"
+          echo "local_gem=${LOCAL_GEM_VERSION}"
+          echo "remote_js=${REMOTE_JS_VERSION}"
+          echo "remote_gem=${REMOTE_GEM_VERSION}"
+        } >> $GITHUB_OUTPUT
 
     - name: Publish gem
       if: ${{ !contains(steps.version.outputs.remote_gem, steps.version.outputs.local_gem) }}
