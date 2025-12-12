@@ -51,6 +51,7 @@ jobs:
       contents: write 
     env:
       GEM_HOST_API_KEY: ${{ secrets.PUBLISHING_PLATFORM_RUBYGEMS_API_KEY }}
+      NPM_CONFIG_PROVENANCE: false
 
     steps:
     - uses: actions/checkout@v4
@@ -95,7 +96,7 @@ jobs:
     - name: Publish js
       if: ${{ steps.version.outputs.local_js != steps.version.outputs.remote_js }}
       working-directory: ./package
-      run: npm publish --provenance --access public
+      run: npm publish --access public
 
     - name: Tag version
       run: |
