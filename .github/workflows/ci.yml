@@ -7,10 +7,6 @@ on:
 
   pull_request:
 
-permissions:
-  id-token: write  # Required for OIDC
-  contents: read  
-
 jobs:
   test_matrix:
     strategy:
@@ -51,6 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
     permissions:
+      id-token: write  # Required for OIDC
       contents: write 
     env:
       GEM_HOST_API_KEY: ${{ secrets.PUBLISHING_PLATFORM_RUBYGEMS_API_KEY }}
