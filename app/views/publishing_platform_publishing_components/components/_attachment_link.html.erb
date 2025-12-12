@@ -1,0 +1,38 @@
+<%
+  attachment = PublishingPlatformPublishingComponents::Presenters::AttachmentHelper.new(attachment)
+  target ||= nil
+  attributes = []
+  if attachment.content_type_name
+    content = if attachment.content_type_abbr
+                raw tag.abbr(attachment.content_type.abbr,
+                             title: attachment.content_type_name,
+                             class: "gem-c-attachment-link__abbr")
+              else
+                attachment.content_type_name
+              end
+
+    attributes << tag.span(content, class: "gem-c-attachment-link__attribute")
+  end
+
+  if attachment.file_size
+    attributes << tag.span(
+      number_to_human_size(attachment.file_size),
+      class: "gem-c-attachment-link__attribute",
+    )
+  end
+
+  if attachment.number_of_pages
+    attributes << tag.span(
+      "#{attachment.number_of_pages} pages",
+      class: "gem-c-attachment-link__attribute",
+    )
+  end
+
+  component_helper = PublishingPlatformPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
+  component_helper.add_class("gem-c-attachment-link")
+%>
+<%= tag.span(**component_helper.all_attributes) do %>
+  <%= link_to(attachment.title, attachment.url,
+              target: target) -%>
+  <%= raw("(#{attributes.join(', ')})") if attributes.any? -%>
+<% end %>

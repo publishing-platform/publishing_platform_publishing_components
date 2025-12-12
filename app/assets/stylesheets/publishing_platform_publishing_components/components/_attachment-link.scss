@@ -1,0 +1,21 @@
+@import 'functions';
+@import 'variables';
+@import 'mixins';
+
+.gem-c-attachment-link__abbr {
+  text-decoration: none !important;
+  cursor: help;
+}
+
+// stylelint-disable declaration-no-important
+@media print {
+  .gem-c-attachment-link .govuk-link {
+    color: $black!important;
+
+    &::after {
+      font-size: inherit;
+      color: inherit;
+    }
+  }
+}
+// stylelint-enable declaration-no-important

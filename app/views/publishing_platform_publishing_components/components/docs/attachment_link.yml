@@ -1,0 +1,61 @@
+name: Attachment link
+description: A link to a file with metadata of the file contents
+body: |
+  This component provides a means to show a link to an attachment with some
+  relevant file data.
+
+  It is expected to be embedded inside an element that provides text styles
+  so does not provide its own text styling.
+accessibility_criteria: |
+    All touch targets (e.g the attachment link) must be 24px large, or leave sufficient space (target-size). See [Understanding Success Criterion 2.5.8: Target Size (Minimum))](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
+
+    To achieve this, you can embed the attachment link within another element that maintains sufficient space above and below the target. For instance, you can place individual links inside a paragraph element, or as a list item.
+
+    Attachment links within paragraphs of text do not need to meet the 24 by 24 CSS pixels requirements.    
+shared_accessibility_criteria:
+- link
+uses_component_wrapper_helper: true
+examples:
+  default:
+    data:
+      attachment:
+        title: "Temporary snow ploughs: guidance note"
+        url: https://assets.publishing.service.publishing-platform.co.uk/uploads/system/uploads/attachment_data/file/259634/temporary-snow-ploughs.pdf
+        filename: temporary-snow-ploughs.pdf
+        content_type: application/pdf
+        file_size: 20000
+        number_of_pages: 1
+  embedded_in_paragraph:
+    embed: |
+      <p>
+        <%= component %>
+      </p>
+    data:
+      attachment:
+        title: "Temporary snow ploughs: guidance note"
+        url: https://assets.publishing.service.publishing-platform.co.uk/uploads/system/uploads/attachment_data/file/259634/temporary-snow-ploughs.pdf
+        filename: temporary-snow-ploughs.pdf
+        content_type: application/pdf
+        file_size: 20000
+        number_of_pages: 1
+  embedded_in_markdown:
+    description: |
+      This component can be embedded in markdown with the `[AttachmentLink:]` code.
+    embed: |
+      <%= render "publishing_platform_publishing_components/components/publishing_platform_markdown" do %>
+        <p>Some introductory information about <%= component %>.</p>
+      <% end %>
+    data:
+      attachment:
+        title: "Temporary snow ploughs: guidance note"
+        url: https://assets.publishing.service.publishing-platform.co.uk/uploads/system/uploads/attachment_data/file/259634/temporary-snow-ploughs.pdf
+        filename: temporary-snow-ploughs.pdf
+        content_type: application/pdf
+        file_size: 20000
+        number_of_pages: 1
+  with_target_blank:
+    data:
+      attachment:
+        title: "Temporary snow ploughs: guidance note"
+        url: https://assets.publishing.service.publishing-platform.co.uk/uploads/system/uploads/attachment_data/file/259634/temporary-snow-ploughs.pdf
+      target: _blank
