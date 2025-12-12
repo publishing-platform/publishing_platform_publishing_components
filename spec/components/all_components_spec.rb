@@ -40,7 +40,6 @@ describe "All components" do
       end
 
       it "has a correctly named SCSS file", skip: component_name.in?(%w[accordion contextual_breadcrumbs contextual_footer contextual_sidebar error_summary google_tag_manager_script layout_for_admin list machine_readable_metadata meta_tags]) do
-        puts component_name
         css_file = "#{__dir__}/../../app/assets/stylesheets/publishing_platform_publishing_components/components/_#{component_name.tr('_', '-')}.scss"
 
         expect(File).to exist(css_file)
