@@ -1,0 +1,91 @@
+<%
+  attachment = PublishingPlatformPublishingComponents::Presenters::AttachmentHelper.new(attachment)
+  target ||= "_self"
+  attributes = []
+  local_assigns[:margin_bottom] ||= 3
+  shared_helper = PublishingPlatformPublishingComponents::Presenters::SharedHelper.new(local_assigns)
+
+  component_helper = PublishingPlatformPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
+  component_helper.add_class("gem-c-attachment")
+
+  case attachment.type
+  when "file"
+    if attachment.content_type_name
+      content = if attachment.content_type_abbr
+                  raw tag.abbr(attachment.content_type.abbr,
+                              title: attachment.content_type_name,
+                              class: "gem-c-attachment__abbr")
+                else
+                  attachment.content_type_name
+                end
+      attributes << tag.span(content, class: "gem-c-attachment__attribute")
+    end
+
+    if attachment.file_size
+      attributes << tag.span(
+        number_to_human_size(attachment.file_size),
+        class: "gem-c-attachment__attribute",
+      )
+    end
+
+    if attachment.number_of_pages
+      attributes << tag.span(
+        "#{attachment.number_of_pages} pages",
+        class: "gem-c-attachment__attribute",
+      )
+    end
+
+  when "html"
+    attributes << tag.span(
+      "HTML",
+      class: "gem-c-attachment__attribute",
+    )
+  when "external"
+    attributes << tag.span(
+      attachment.url,
+      class: "gem-c-attachment__attribute",
+    )
+  end
+%>
+<%= tag.section(**component_helper.all_attributes) do %>
+  <%= tag.div class: "gem-c-attachment__thumbnail" do %>
+    <%= link_to attachment.url,
+                target: target,
+                tabindex: "-1",
+                "aria-hidden": true do %>
+      <% if attachment.thumbnail_url.present? %>
+        <% image_tag(attachment.thumbnail_url, alt: "", class: "gem-c-attachment__thumbnail-image gem-c-attachment__thumbnail-image--custom") %>
+      <% elsif attachment.html? %>
+        <%= render "publishing_platform_publishing_components/components/attachment/thumbnail_html" %>
+      <% elsif attachment.document? %>
+        <%= render "publishing_platform_publishing_components/components/attachment/thumbnail_document" %>
+      <% elsif attachment.spreadsheet? %>
+        <%= render "publishing_platform_publishing_components/components/attachment/thumbnail_spreadsheet" %>
+      <% elsif attachment.pdf? %>
+        <%= render "publishing_platform_publishing_components/components/attachment/thumbnail_pdf" %>
+      <% elsif attachment.external? %>
+        <%= render "publishing_platform_publishing_components/components/attachment/thumbnail_external" %>
+      <% else %>
+        <%= render "publishing_platform_publishing_components/components/attachment/thumbnail_generic" %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= tag.div class: "gem-c-attachment__details" do %>
+    <%= content_tag(shared_helper.get_heading_level, class: "gem-c-attachment__title") do %>
+      <%= link_to attachment.title, attachment.url, target: target %>
+    <% end %>
+
+    <% if attachment.reference.present? %>
+      <%= tag.p "Ref: #{attachment.reference}", class: "gem-c-attachment__metadata gem-c-attachment__metadata--compact" %>
+    <% end %>
+
+    <% if attributes.any? %>
+      <%= tag.p raw(attributes.join(", ")), class: "gem-c-attachment__metadata" %>
+    <% end %>
+
+    <% if attachment.preview_url.present? %>
+      <%= tag.p link_to("View online", attachment.preview_url, "aria-label": "View #{attachment.title}", class: "gem-c-attachment__metadata") %>
+    <% end %>
+  <% end %>
+<% end %>

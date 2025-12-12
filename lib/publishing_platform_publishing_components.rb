@@ -3,6 +3,7 @@ require "publishing_platform_publishing_components/version"
 require "publishing_platform_publishing_components/engine"
 require "publishing_platform_publishing_components/presenters/shared_helper"
 require "publishing_platform_publishing_components/presenters/component_wrapper_helper"
+require "publishing_platform_publishing_components/presenters/attachment_helper"
 
 module PublishingPlatformPublishingComponents
   # Your code goes here...

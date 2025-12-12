@@ -1,0 +1,38 @@
+<%
+  id ||= "error-summary-#{SecureRandom.hex(4)}"
+  title ||= false
+  description ||= false
+  items ||= []
+  if items.empty? && !title
+    raise ArgumentError, "The error_summary component needs at least one item or a title in order to render."
+  end  
+
+  component_helper = PublishingPlatformPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
+  component_helper.add_class("gem-c-error-summary alert alert-danger")  
+  component_helper.add_role("alert") 
+%>
+<%= tag.div(**component_helper.all_attributes) do %>
+  <% if title %>
+    <h2 class="alert-heading"><%= title %></h2>
+  <% end %>
+  
+  <% if description %>
+    <p><%= description %></p>
+  <% end %>    
+  
+  <% if items.present? %>
+    <ul class="list-unstyled mb-0">
+      <% items.each_with_index do |item, index| %>
+        <li>
+          <% if item[:href] %>
+            <%= link_to item[:text], item[:href], target: item[:target], data: item[:data_attributes] %>
+          <% else %>
+            <%= tag.span data: item[:data_attributes] do %>
+              <%= item[:text] %>
+            <% end %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>

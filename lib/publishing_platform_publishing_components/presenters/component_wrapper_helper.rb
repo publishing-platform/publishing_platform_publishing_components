@@ -151,7 +151,7 @@ module PublishingPlatformPublishingComponents
         return if classes.blank?
 
         class_array = classes.split(" ")
-        unless class_array.all? { |c| c.start_with?("js-", "gem-c-", "app-c-", "brand--", "brand__", "gem-print-") }
+        unless class_array.all? { |c| c.start_with?("js-", "gem-c-", "app-c-", "brand--", "brand__", "gem-print-", "alert") }
           raise(ArgumentError, "Classes (#{classes}) must be prefixed with `js-`")
         end
       end

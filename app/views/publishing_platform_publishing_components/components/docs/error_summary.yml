@@ -1,0 +1,51 @@
+name: Form error summary
+description: Used at the top of the page, to summarise validation errors.
+accessibility_criteria: |
+  - should be focused on page load, to ensure this error is noticed by assistive tech
+  - list of errors should be clickable and focus the inputs with errors
+shared_accessibility_criteria:
+  - link
+accessibility_excluded_rules:
+  - skip-link # This component is creating references to to sections on the page that do not exist in examples
+examples:
+  default:
+    data:
+      id: error-summary
+      title: Message to alert the user to a problem goes here
+      description: Optional description of the errors and how to correct them
+      items:
+      - text: Descriptive link to the question with an error
+        href: '#example-error-1'
+  with_many_errors:
+    data:
+      title: Message to alert the user to a problem goes here
+      description: Optional description of the errors and how to correct them
+      items:
+      - text: Descriptive link to the question with an error 1
+        href: '#example-error-1'
+      - text: Descriptive link to the question with an error 2
+        href: '#example-error-2'
+      - text: Description of error without link
+  with_data_attributes:
+    description: |
+      The example shown applies a tracking attribute specifically for use by Google Tag Manager.
+      
+      Other data attributes can also be applied as required. Note that the component does not include built in tracking.
+    data:
+      title: Message to alert the user to a problem goes here
+      description: Optional description of the errors and how to correct them
+      data_attributes:
+        tracking: GTM-123AB
+      items:
+      - text: Descriptive link to the question with an error 1
+  with_custom_target_on_links:
+    data:
+      title: Message to alert the user to a problem goes here
+      description: Optional description of the errors and how to correct them
+      items:
+      - text: Descriptive link to the question with an error opening in a new window
+        href: '#example-error-1'
+        target: '_blank'
+      - text: Descriptive link to the question with an error opening in the same window
+        href: '#example-error-2'
+        target: '_self'

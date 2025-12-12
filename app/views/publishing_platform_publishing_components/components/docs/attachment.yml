@@ -1,0 +1,104 @@
+name: Attachment
+description: Displays a link to download an attachment and metadata about the file
+body: |
+  This component shows a link to a document that is attached to Publishing Platform 
+  content along with a thumbnail and relevant file data.
+
+  It is intended to be rendered in markdown and as an attachment 'preview' in
+  Content Publisher.
+shared_accessibility_criteria:
+- link
+accessibility_criteria: |
+  The thumbnail image, and the link wrapping it, must not focusable or shown to
+  screenreaders.
+uses_component_wrapper_helper: true
+examples:
+  default:
+    data:
+      attachment:
+        title: "Information asset register"
+        url: https://assets.publishing.service.publishing-platform.co.uk/uploads/system/uploads/attachment_data/file/747661/information-asset-register.csv
+        filename: information-asset-register.csv
+        content_type: text/csv
+        file_size: 20000
+  with_number_of_pages:
+    data:
+      attachment:
+        title: "Temporary snow ploughs: guidance note"
+        url: https://assets.publishing.service.publishing-platform.co.uk/uploads/system/uploads/attachment_data/file/259634/temporary-snow-ploughs.pdf
+        filename: temporary-snow-ploughs.pdf
+        content_type: application/pdf
+        file_size: 20000
+        number_of_pages: 7
+  opendocument:
+    data:
+      attachment:
+        title: "Information Asset Register"
+        url: https://assets.publishing.service.publishing-platform.co.uk/uploads/system/uploads/attachment_data/file/744083/Information_Asset_Register_.ods
+        filename: Information_Asset_Register_.ods
+        content_type: application/vnd.oasis.opendocument.spreadsheet
+        file_size: 20000
+  # embedded_in_markdown:
+  #   description: |
+  #     This component can be embedded in markdown with the `[Attachment:]` code.
+  #   embed: |
+  #     <%= render "publishing_platform_publishing_components/components/publishing_platform_markdown" do %>
+  #       <p>Some text.</p>
+  #       <%= component %>
+  #     <% end %>
+  #   data:
+  #     attachment:
+  #       title: "Information asset register"
+  #       url: https://assets.publishing.service.publishing-platform.co.uk/uploads/system/uploads/attachment_data/file/744083/Information_Asset_Register_.ods
+  #       filename: Information_Asset_Register_.ods
+  #       content_type: application/vnd.oasis.opendocument.spreadsheet
+  #       file_size: 20000
+  with_margin_bottom:
+    description: The component accepts a number for margin bottom from `0` to `5`. It defaults to no margin bottom.
+    data:
+      attachment:
+        title: "Information asset register"
+        url: https://assets.publishing.service.publishing-platform.co.uk/uploads/system/uploads/attachment_data/file/747661/information-asset-register.csv
+        filename: information-asset-register.csv
+        content_type: application/pdf
+        file_size: 20000
+      margin_bottom: 9
+  with_custom_heading_level:
+    description: Default is `h2`.
+    data:
+      heading_level: 3
+      attachment:
+        title: "Information asset register"
+        url: https://assets.publishing.service.publishing-platform.co.uk/uploads/system/uploads/attachment_data/file/747661/information-asset-register.csv
+        filename: information-asset-register.csv
+        content_type: text/csv
+        file_size: 20000
+  pdf_attachment:
+    data:
+      attachment:
+        title: "Temporary snow ploughs: guidance note"
+        url: https://assets.publishing.service.publishing-platform.co.uk/uploads/system/uploads/attachment_data/file/259634/temporary-snow-ploughs.pdf
+        filename: temporary-snow-ploughs.pdf
+        content_type: application/pdf
+        file_size: 20000
+  with_preview_link:
+    data:
+      attachment:
+        title: "Finance data: February 2018"
+        url: https://assets.publishing.service.publishing-platform.co.uk/uploads/system/uploads/attachment_data/file/687542/February_2018_Finance_Data.csv
+        filename: February_2018_Finance_Data.csv
+        content_type: text/csv
+        file_size: 51496
+        preview_url: https://assets.publishing.service.publishing-platform.co.uk/uploads/system/uploads/attachment_data/file/687542/February_2018_Finance_Data.csv/preview
+  html_attachment:
+    data:
+      attachment:
+        title: "Smart meters: unlocking the future"
+        url: https://www.publishing-platform.co.uk/publications/smart-meters-unlocking-the-future/smart-meters-unlocking-the-future
+        type: html
+  external_attachment:
+    data:
+      attachment:
+        title: "Architects Registration Board annual report 2021"
+        url: https://arb.org.uk/wpcontent/uploads/ARBAnnualReportandFinancialStatement2021published.pdf
+        type: external

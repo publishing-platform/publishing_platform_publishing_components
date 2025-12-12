@@ -1,0 +1,117 @@
+@import 'functions';
+@import 'variables';
+@import 'mixins';
+
+$thumbnail-width: 99px;
+$thumbnail-height: 140px;
+$thumbnail-border-width: 5px;
+$thumbnail-background: $white;
+$thumbnail-border-colour: rgba(11, 12, 12, .1); /* stylelint-disable-line */
+$thumbnail-shadow-colour: rgba(11, 12, 12, .4); /* stylelint-disable-line */
+$thumbnail-shadow-width: 0 2px 2px;
+$thumbnail-icon-border-colour: $gray-500;
+
+.gem-c-attachment {
+  position: relative;
+
+  @include clearfix;
+}
+
+.gem-c-attachment__thumbnail {
+  position: relative;
+  width: auto;
+  padding: $thumbnail-border-width;
+  float: left;
+}
+
+.gem-c-attachment__thumbnail-image {
+  display: block;
+  width: auto; // for IE8
+  max-width: calc($thumbnail-width / 1.5);
+  height: calc($thumbnail-height / 1.5);
+  border: $thumbnail-border-colour; // for IE9 & IE10
+  outline: $thumbnail-border-width solid $thumbnail-border-colour;
+  background: $thumbnail-background;
+  box-shadow: $thumbnail-shadow-width $thumbnail-shadow-colour;
+  fill: $thumbnail-icon-border-colour;
+  stroke: $thumbnail-icon-border-colour;
+
+  @include media-breakpoint-up(sm) {
+    max-width: $thumbnail-width;
+    height: $thumbnail-height;
+  }
+}
+
+.gem-c-attachment__details {
+  padding-left: calc(($thumbnail-width + $thumbnail-border-width * 2 + 30px) / 1.5);
+
+  @include media-breakpoint-up(sm) {
+    padding-left: $thumbnail-width + $thumbnail-border-width * 2 + 25px;
+  }  
+
+  .gem-c-details {
+    margin-top: 15px;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+}
+
+.gem-c-attachment__title {
+  margin: 0 0 15px;
+  font-size: $h5-font-size;
+
+  @include media-breakpoint-up(sm) {
+    font-size: $h3-font-size;
+  }      
+}
+
+.gem-c-attachment__metadata {
+  margin: 0 0 15px;
+  color: $gray-600;
+  word-wrap:break-word;
+  overflow-wrap: break-word;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.publishing-platform-markdown,
+.gem-c-publishing-platform-markdown {
+  .gem-c-attachment__title {
+    margin: 0 0 15px;
+    font-size: $h5-font-size;
+
+    @include media-breakpoint-up(sm) {
+      font-size: $h3-font-size;
+    }    
+  }
+
+  .gem-c-attachment__metadata {
+    margin: 0 0 15px;
+  }
+}
+
+.gem-c-attachment__metadata--compact {
+  margin-bottom: 0;
+}
+
+.gem-c-attachment__abbr {
+  text-decoration: none !important;
+  cursor: help;
+}
+
+@media print {
+  .gem-c-attachment__details {
+    padding: 0;
+  }
+
+  .gem-c-attachment__metadata {
+    color: $black;
+  }
+
+  .gem-c-attachment__metadata,
+  .gem-c-attachment__metadata .govuk-link::after {
+    font-size: 12pt;
+  }
+}
