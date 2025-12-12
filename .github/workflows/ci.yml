@@ -95,7 +95,7 @@ jobs:
     - name: Publish js
       if: ${{ steps.version.outputs.local_js != steps.version.outputs.remote_js }}
       working-directory: ./package
-      run: npm publish --access public
+      run: npm publish --provenance --access public
 
     - name: Tag version
       run: |
