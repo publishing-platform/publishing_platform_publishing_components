@@ -83,7 +83,7 @@ jobs:
           echo "local_gem=${LOCAL_GEM_VERSION}"
           echo "remote_js=${REMOTE_JS_VERSION}"
           echo "remote_gem=${REMOTE_GEM_VERSION}"
-        } >> $GITHUB_OUTPUT
+        } >> "$GITHUB_OUTPUT"
 
     - name: Publish gem
       if: ${{ !contains(steps.version.outputs.remote_gem, steps.version.outputs.local_gem) }}
