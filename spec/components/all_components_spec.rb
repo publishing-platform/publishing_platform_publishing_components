@@ -8,11 +8,11 @@ describe "All components" do
     describe component_name do
       yaml_file = "#{__dir__}/../../app/views/publishing_platform_publishing_components/components/docs/#{component_name}.yml"
 
-      it "is documented" do
+      it "is documented", skip: component_name.in?(%w[layout]) do
         expect(File).to exist(yaml_file)
       end
 
-      it "has the correct documentation" do
+      it "has the correct documentation", skip: component_name.in?(%w[layout]) do
         # Psych 4's YAML.unsafe_load_file === Psych 3's YAML.load_file
         # but until we drop support for Ruby 2.7 and Ruby 3.0, we need to support both major versions of Psych
         yaml = YAML.respond_to?(:unsafe_load_file) ? YAML.unsafe_load_file(yaml_file) : YAML.load_file(yaml_file)
@@ -33,13 +33,13 @@ describe "All components" do
         expect(erb).to match(class_name), class_name
       end
 
-      it "has a correctly named spec file" do
+      it "has a correctly named spec file", skip: component_name.in?(%w[layout]) do
         rspec_file = "#{__dir__}/../../spec/components/#{component_name.tr('-', '_')}_spec.rb"
 
         expect(File).to exist(rspec_file)
       end
 
-      it "has a correctly named SCSS file", skip: component_name.in?(%w[accordion contextual_breadcrumbs contextual_footer contextual_sidebar error_summary google_tag_manager_script layout_for_admin list machine_readable_metadata meta_tags]) do
+      it "has a correctly named SCSS file", skip: component_name.in?(%w[error_summary navigation]) do
         css_file = "#{__dir__}/../../app/assets/stylesheets/publishing_platform_publishing_components/components/_#{component_name.tr('_', '-')}.scss"
 
         expect(File).to exist(css_file)

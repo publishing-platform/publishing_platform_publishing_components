@@ -1,0 +1,21 @@
+name: Navigation
+description: The navigation used by the layout component.
+body: |
+shared_accessibility_criteria:
+  - link
+accessibility_criteria: |
+  The component must:
+
+  * have a text contrast ratio higher than 4.5:1 against the background colour to meet WCAG AA
+  * follow the expected tabbing border
+  * allow menus to be closed when the escape key is pressed
+examples:
+  default:
+    data:
+      navigation_items:
+        - text: Example link 1
+          href: "#"
+        - text: Example link 2
+          href: "#"
+        - text: Example link 3
+          href: "#"

@@ -1,0 +1,19 @@
+<%= render "publishing_platform_publishing_components/components/layout", {
+  title: "Example public page",
+  navigation_items: [
+    {
+      text: "Example link 1",
+      href: "#",
+    },
+    {
+      text: "Example link 2",
+      href: "#",
+    },
+    {
+      text: "Example link 3",
+      href: "#",
+    },  
+  ]
+} do %>
+  <%= yield %>
+<% end %>
