@@ -1,6 +1,6 @@
 {
   "name": "@publishing-platform/publishing-platform-publishing-components",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "all.js",
   "license": "MIT",
   "repository":"https://github.com/publishing-platform/publishing_platform_publishing_components",
