@@ -4,12 +4,10 @@
   shared_helper = PublishingPlatformPublishingComponents::Presenters::SharedHelper.new(local_assigns)
 
   title ||= nil
-  borderless ||= false
   edit ||= {}
   delete ||= {}
   items ||= []
   block ||= yield
-  wide_title ||= false
 
   component_helper = PublishingPlatformPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
   component_helper.add_class("gem-c-summary-list")
