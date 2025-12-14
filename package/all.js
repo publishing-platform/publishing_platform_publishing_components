@@ -1,4 +1,4 @@
-import Tab from 'bootstrap/js/src/tab'
+import Tab from './components/tab'
 
 function initAll (options) {
   // // Set the options to an empty object by default if no options are passed.

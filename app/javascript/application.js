@@ -1,3 +1,5 @@
-import { initAll } from '../../package/all'
+import Tab from '../../package/components/tab'
 
-initAll()
+// import { initAll } from '../../package/all'
+
+// initAll()
