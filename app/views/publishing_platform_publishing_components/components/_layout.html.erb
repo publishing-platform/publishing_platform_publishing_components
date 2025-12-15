@@ -2,7 +2,10 @@
 
   title ||= "Publishing Platform"
   navigation_items ||= []
+  logo_link ||= "/"
+  logo_text ||= "Publishing Platform"
   
+  logo_link_classes = %w(d-flex align-items-center link-body-emphasis text-decoration-none)  
 -%>
 
 <!DOCTYPE html>
@@ -21,9 +24,9 @@
     <div class="gem-c-layout container py-3">
       <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <div class="col-md-3 mb-2 mb-md-0">
-          <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
-            <span class="fs-4">Publishing Platform</span>
-          </a>
+          <%= link_to(logo_link, class: logo_link_classes) do %>
+            <span class="fs-4"><%= logo_text %></span>
+          <% end %>
         </div>  
         <% if navigation_items.present? %>
           <%= render "publishing_platform_publishing_components/components/navigation", { navigation_items: }%>  
