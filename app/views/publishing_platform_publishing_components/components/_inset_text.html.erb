@@ -1,0 +1,14 @@
+<%
+  id ||= "inset-text-#{SecureRandom.hex(4)}"
+
+  component_helper = PublishingPlatformPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
+  component_helper.add_class("gem-c-inset-text")
+  component_helper.set_id(id)
+%>
+<%= tag.div(**component_helper.all_attributes) do %>
+  <% if defined? text %>
+    <%= text %>
+  <% elsif block_given? %>
+    <%= yield %>
+  <% end %>
+<% end %>
