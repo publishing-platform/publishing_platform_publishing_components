@@ -1,0 +1,52 @@
+<%
+  items ||= []
+  input_name ||= "ordering"
+
+  component_helper = PublishingPlatformPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
+  component_helper.add_class("gem-c-reorderable-list")
+  component_helper.add_data_attribute({ module: "reorderable-list" })
+%>
+
+<%= tag.ol(**component_helper.all_attributes) do %>
+  <% items.each_with_index do |item, index| %>
+    <%= tag.li class: "gem-c-reorderable-list__item" do %>
+      <%= tag.div class: "gem-c-reorderable-list__wrapper" do %>
+        <%= tag.div class: "gem-c-reorderable-list__content" do %>
+          <%= tag.p item[:title], class: "gem-c-reorderable-list__title" %>
+          <%= tag.p(item[:description], class: "gem-c-reorderable-list__description") if item[:description].present? %>
+        <% end %>
+        <%= tag.div class: "gem-c-reorderable-list__actions" do %>
+
+          <% label_text = capture do %>
+            Position<span class='visually-hidden'> for <%= item[:title] %></span>
+          <% end %> 
+
+          <% input_id = "input-#{SecureRandom.hex(4)}" %> 
+
+          <%= tag.div class: "gem-c-reorderable-list__form-group" do %>
+            <%= label_tag input_id, label_text, class: "form-label fw-bold" %>
+            <%= text_field_tag "#{input_name}[#{item[:id]}]",
+                  index + 1,
+                  id: input_id,
+                  inputmode: "numeric",
+                  class: "form-control gem-c-reorderable-list__input" %>
+          <% end %>
+
+          <%= content_tag :button, 
+            "Up",
+            class: "btn btn-secondary js-reorderable-list-up",
+            type: "button",
+            "aria-label": "Move \"#{item[:title]}\" up"         
+            %>     
+            
+          <%= content_tag :button, 
+            "Down",
+            class: "btn btn-secondary js-reorderable-list-down",
+            type: "button",
+            "aria-label": "Move \"#{item[:title]}\" down"         
+            %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

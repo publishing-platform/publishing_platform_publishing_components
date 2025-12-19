@@ -11,7 +11,8 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "@rollup/plugin-node-resolve": "^16.0.1",
-    "rollup": "^4.40.0"
+    "rollup": "^4.40.0",
+    "sortablejs": "^1.15.6"
   },
   "devDependencies": {
     "postcss": "^8.5.6",

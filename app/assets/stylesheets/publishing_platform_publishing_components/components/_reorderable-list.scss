@@ -1,0 +1,134 @@
+@import 'functions';
+@import 'variables';
+@import 'mixins';
+
+.gem-c-reorderable-list {
+  list-style-type: none;
+  margin-bottom: 30px;
+  margin-top: 0;
+  padding-left: 0;
+  position: relative;
+  font-weight: $font-weight-bold;
+
+  .gem-c-reorderable-list__form-group {
+    margin-bottom: 0;
+
+    .form-label {
+      display: block !important;
+    }
+
+    .form-control {
+      display: inline-block !important;
+    }
+  }  
+}
+
+.gem-c-reorderable-list__item {
+  margin-bottom: 15px;
+  border: 1px solid $gray-500;
+  padding: 15px;
+}
+
+.gem-c-reorderable-list__item--chosen {
+  background-color: $gray-200;
+  outline: 2px dotted $gray-500;
+}
+
+.gem-c-reorderable-list__actions {
+  display: block;
+
+  @include media-breakpoint-up(sm) {
+    flex: 1 0 auto;
+    text-align: right;
+  }  
+
+  .btn {
+    display: none;
+  }
+}
+
+.gem-c-reorderable-list__item--drag {
+  background-color: $white;
+  list-style-type: none;
+
+  .gem-c-reorderable-list__actions {
+    visibility: hidden;
+  }
+}
+
+.gem-c-reorderable-list__wrapper {
+  display: block;
+
+  @include media-breakpoint-up(sm) {
+    display: inline-flex;
+    width: 100%;
+  }    
+}
+
+.gem-c-reorderable-list__content {
+  margin-bottom: 10px;
+
+  @include media-breakpoint-up(sm) {
+    margin-bottom: 0;
+    flex: 0 1 auto;
+    min-width: 65%;
+  }
+}
+
+.gem-c-reorderable-list__title {
+  margin: 0;
+}
+
+.gem-c-reorderable-list__description {
+  margin: 0;
+  font-size: $small-font-size;
+  font-weight: $font-weight-normal;
+}
+
+.gem-c-reorderable-list__input {
+  max-width: 2.75em;
+}
+
+.js-enabled {
+  .gem-c-reorderable-list__item {
+    @include media-breakpoint-up(sm) {
+      cursor: move;
+    }
+  }
+
+  .gem-c-reorderable-list__actions .gem-c-reorderable-list__form-group  {
+    display: none;
+  }
+
+  .gem-c-reorderable-list__actions .btn {
+    display: inline-block;
+    margin-left: 15px;
+    width: 80px;
+  }
+
+  .gem-c-reorderable-list__actions .btn:first-of-type {
+    margin-left: 0;
+
+    @include media-breakpoint-up(sm) {
+      margin-left: 15px;
+    }    
+  }
+
+  .gem-c-reorderable-list__item:first-child .btn:first-of-type,
+  .gem-c-reorderable-list__item:last-child .btn:last-of-type {
+    display: none;
+
+    @include media-breakpoint-up(sm) {
+      display: inline-block;
+      visibility: hidden;
+    }      
+  }
+
+  .gem-c-reorderable-list__item:first-child .btn:last-of-type {
+    margin-left: 0;
+
+    @include media-breakpoint-up(sm) {
+      margin-left: 15px;
+    }       
+  }
+}

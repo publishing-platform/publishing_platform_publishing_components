@@ -5,6 +5,7 @@
   "license": "MIT",
   "repository":"https://github.com/publishing-platform/publishing_platform_publishing_components",
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "bootstrap": "^5.3.3",
+    "sortablejs": "^1.15.6"
   }
 }
