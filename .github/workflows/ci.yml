@@ -23,7 +23,7 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
 
-    - uses: actions/setup-node@v6.1.0
+    - uses: actions/setup-node@v6.3.0
       with:
         cache: yarn
         node-version-file: '.nvmrc'
@@ -59,7 +59,7 @@ jobs:
       with:
         rubygems: latest
 
-    - uses: actions/setup-node@v6.1.0
+    - uses: actions/setup-node@v6.3.0
       with:        
         node-version-file: '.nvmrc'
         registry-url: "https://registry.npmjs.org"
