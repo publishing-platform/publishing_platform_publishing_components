@@ -86,12 +86,12 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
-    addressable (2.8.7)
-      public_suffix (>= 2.0.2, < 7.0)
+    addressable (2.9.0)
+      public_suffix (>= 2.0.2, < 8.0)
     ast (2.4.3)
     base64 (0.3.0)
     bigdecimal (4.1.1)
-    brakeman (7.1.0)
+    brakeman (8.0.4)
       racc
     builder (3.3.0)
     capybara (3.40.0)
@@ -204,7 +204,7 @@ GEM
     psych (5.3.1)
       date
       stringio
-    public_suffix (6.0.2)
+    public_suffix (7.0.5)
     publishing_platform_app_config (0.4.1)
       puma (>= 5.6, < 8.0)
       sentry-rails (>= 5.3, < 7.0)
@@ -216,7 +216,7 @@ GEM
       rubocop-rails (= 2.34.3)
       rubocop-rake (= 0.7.1)
       rubocop-rspec (= 3.9.0)
-    publishing_platform_test (0.1.1)
+    publishing_platform_test (0.2.1)
       brakeman (>= 5.0.2)
       capybara (>= 3.36)
       puma
@@ -268,7 +268,7 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
-    regexp_parser (2.11.3)
+    regexp_parser (2.12.0)
     reline (0.6.3)
       io-console (~> 0.5)
     rexml (3.4.4)
@@ -320,7 +320,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (~> 1.81)
     ruby-progressbar (1.13.0)
-    rubyzip (3.2.1)
+    rubyzip (3.2.2)
     sass-embedded (1.95.1-aarch64-linux-gnu)
       google-protobuf (~> 4.31)
     sass-embedded (1.95.1-aarch64-linux-musl)
@@ -338,7 +338,7 @@ GEM
     sass-embedded (1.95.1-x86_64-linux-musl)
       google-protobuf (~> 4.31)
     securerandom (0.4.1)
-    selenium-webdriver (4.38.0)
+    selenium-webdriver (4.43.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
