@@ -8,6 +8,15 @@ updates:
     directory: "/"
     schedule:
       interval: daily
+    # Group packages into shared PR
+    groups:
+      bootstrap:
+        patterns:
+          - 'bootstrap'
+      sortablejs:
+        patterns:
+          - 'sortablejs'
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
