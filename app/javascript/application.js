@@ -1,3 +1,4 @@
+import Collapse from '../../package/components/collapse'
 import Tab from '../../package/components/tab'
 import ReorderableList from '../../package/components/reorderable-list'
 

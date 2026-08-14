@@ -8,10 +8,10 @@
 
     <%= stylesheet_link_tag "application" %>    
   </head>  
-  <body>  
+  <body>
     <%= javascript_tag nonce: true do -%>
-      document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
-    <% end %>    
+      document.body.className += ' js-enabled';
+    <% end %>      
     
     <div class="container py-3">    
       <main>       

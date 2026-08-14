@@ -1,3 +1,4 @@
+import Collapse from './components/collapse'
 import Tab from './components/tab'
 import ReorderableList from './components/reorderable-list'
 
@@ -20,6 +21,7 @@ function initAll (options) {
 
 export {
   initAll,
+  Collapse,
   Tab,
   ReorderableList
 }

@@ -1,0 +1,41 @@
+<h1>A test page in the dummy app</h1>
+<p>This is for testing the accordion component</p>
+
+<div class="accordion" id="edition-history">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#edition-1" aria-expanded="true" aria-controls="edition-1">
+        Edition 1
+      </button>
+    </h2>
+    <div id="edition-1" class="accordion-collapse collapse show" data-bs-parent="#edition-history">
+      <div class="accordion-body">
+        History of first version of Edition
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#edition-2" aria-expanded="false" aria-controls="edition-2">
+        Edition 2
+      </button>
+    </h2>
+    <div id="edition-2" class="accordion-collapse collapse" data-bs-parent="#edition-history">
+      <div class="accordion-body">
+        History of second version of Edition
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#edition-3" aria-expanded="false" aria-controls="edition-3">
+        Edition 3
+      </button>
+    </h2>
+    <div id="edition-3" class="accordion-collapse collapse" data-bs-parent="#edition-history">
+      <div class="accordion-body">
+        History of third version of Edition
+      </div>
+    </div>
+  </div>
+</div>
