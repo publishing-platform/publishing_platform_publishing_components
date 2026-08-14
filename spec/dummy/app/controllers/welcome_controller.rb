@@ -3,6 +3,10 @@ class WelcomeController < ApplicationController
     render "tabs_example"
   end
 
+  def accordionexample
+    render "accordion_example"
+  end
+
   def layout
     render "layout_example", layout: "dummy_layout"
   end
